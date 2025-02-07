@@ -1,4 +1,4 @@
-# schememanator
+# schemanator
 
 Generate schemas out of collections of data. Can output data schemas in its own
 JSON format, [JSON Schema](https://json-schema.org/), or
@@ -21,11 +21,11 @@ The fields in your data set will be tagged with the following data types:
 ## Flags
 
 `-i --ignore-inconsistent` Allows fields to have inconsistent typing and be
-tagged as `any`. Without this flag, schememanator will throw and exception and
+tagged as `any`. Without this flag, schemanator will throw and exception and
 quit for inconsistent data sets.
 
 `-q --quoted-strings` Every field in quotes (double or single) will be treated
-as strings. Otherwise, schememanator will attempt to predict the type of data
+as strings. Otherwise, schemanator will attempt to predict the type of data
 between the quotes.
 
 `-e --enumerate-union` For fields that can take on multiple types, enumerate the
