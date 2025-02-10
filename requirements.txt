@@ -1,0 +1,18 @@
+appdirs==1.4.4
+distlib==0.3.1
+filelock==3.0.12
+iniconfig==2.0.0
+mypy==1.15.0
+mypy-extensions==1.0.0
+packaging==24.2
+pbr==5.4.5
+pluggy==1.5.0
+pytest==8.3.4
+setuptools==46.4.0
+six==1.15.0
+stevedore==3.0.0
+typing_extensions==4.12.2
+virtualenv @ file:///tmp/venvburrito.h134a00x/virtualenv-20.0.26
+virtualenv-clone==0.5.4
+virtualenvwrapper==4.8.4
+xmltodict==0.14.2
