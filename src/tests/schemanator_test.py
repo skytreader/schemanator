@@ -1,6 +1,7 @@
 import unittest
 
-from ..schemanator import SchemanatedType
+from ..errors import InconsistentDataError
+from ..schemanator import SchemanatedType, Schemanator
 
 class SchemanatedTypeTests(unittest.TestCase):
 
@@ -28,3 +29,19 @@ class SchemanatedTypeTests(unittest.TestCase):
             SchemanatedType.JSON_ARRAY,
             SchemanatedType.decide("[1, 2, 3]")
         )
+
+class SchemanatorTests(unittest.TestCase):
+
+    def test_inconsistency_error(self):
+        schemanator = Schemanator()
+        data = (
+            {
+                "name": "Chad Chadderson",
+                "age": 28
+            },
+            {
+                "name": "Marky Markyson",
+                "age": "twenty-eight"
+            }
+        )
+        self.assertRaises(InconsistentDataError, schemanator.emanate, data)
