@@ -17,6 +17,9 @@ The fields in your data set will be tagged with the following data types:
 - `JSONObject` for obviously-JSON objects
 - `JSONArray` for obviously-JSON arrays
 - `any` for fields that can take on multiple types
+- `optional` for fields that may not always be present for each item. Optional
+  fields will only be marked with either `--ignore-inconsistent` or
+  `--enumerate-union`.
 
 ## Flags
 

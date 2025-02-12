@@ -45,3 +45,24 @@ class SchemanatorTests(unittest.TestCase):
             }
         )
         self.assertRaises(InconsistentDataError, schemanator.emanate, data)
+
+    def test_no_mod(self):
+        schemanator = Schemanator(ignore_inconsistent=True)
+        s1 = {
+            "spam": SchemanatedType.INTEGER
+        }
+        s1_copy = {
+            "spam": SchemanatedType.INTEGER
+        }
+        s2 = {
+            "egg": SchemanatedType.FLOAT
+        }
+        s2_copy = {
+            "egg": SchemanatedType.FLOAT
+        }
+
+        self.assertEqual(s1, s1_copy)
+        self.assertEqual(s2, s2_copy)
+        schemanator._Schemanator__merge_schemas(s1, s2)
+        self.assertEqual(s1, s1_copy)
+        self.assertEqual(s2, s2_copy)

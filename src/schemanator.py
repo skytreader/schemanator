@@ -2,6 +2,7 @@ from enum import auto, StrEnum
 from .errors import InconsistentDataError
 from typing import Iterable
 
+import copy
 import json
 import re
 
@@ -19,6 +20,7 @@ class SchemanatedType(StrEnum):
     # Any is only used for fields that take on different types throughout the
     # given dataset.
     ANY = auto()
+    OPTIONAL = auto()
 
     @classmethod
     def decide(cls, s: str):
@@ -73,19 +75,23 @@ class Schemanator(object):
         s1_keys = set(s1.keys())
         s2_keys = set(s2.keys())
         uniq_s2_keys = s2_keys.difference(s1_keys)
+        original_schema = copy.deepcopy(s1)
 
         for s1k in s1_keys:
-            if s1[s1k] is not s2[s1k]:
+            s2_type = s2.get(s1k)
+            if original_schema[s1k] is not s2_type:
                 if self.ignore_inconsistent:
-                    s1[s1k] = SchemanatedType.ANY
+                    original_schema[s1k] = SchemanatedType.ANY
 
                     s1k_known_types = self.type_collisions.get(s1k, set())
                     s1k_known_types.add(s1[s1k])
-                    s1k_known_types.add(s2[s1k])
+                    s1k_known_types.add(
+                        s2_type if s2_type else SchemanatedType.OPTIONAL
+                    )
                 else:
-                    raise InconsistentDataError(s1k, s1[s1k], s2[s1k])
+                    raise InconsistentDataError(s1k, s1[s1k], s2.get(s1k))
 
         for uk in uniq_s2_keys:
-            s1[uk] = s2[uk]
+            original_schema[uk] = s2[uk]
 
-        return s1
+        return original_schema
