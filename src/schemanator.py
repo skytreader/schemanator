@@ -80,13 +80,14 @@ class Schemanator(object):
             s2_type = s2.get(s1k)
             if original_schema[s1k] is not s2_type:
                 if self.ignore_inconsistent:
-                    original_schema[s1k] = SchemanatedType.ANY
+                    if s2_type:
+                        original_schema[s1k] = SchemanatedType.ANY
 
-                    s1k_known_types = self.type_collisions.get(s1k, set())
-                    s1k_known_types.add(s1[s1k])
-                    s1k_known_types.add(
-                        s2_type if s2_type else SchemanatedType.OPTIONAL
-                    )
+                        s1k_known_types = self.type_collisions.get(s1k, set())
+                        s1k_known_types.add(s1[s1k])
+                        s1k_known_types.add(s2_type)
+                    else:
+                        original_schema[s1k] = SchemanatedType.OPTIONAL
                 else:
                     raise InconsistentDataError(s1k, s1[s1k], s2.get(s1k))
 

@@ -34,4 +34,4 @@ between the quotes.
 `-e --enumerate-union` For fields that can take on multiple types, enumerate the
 possible types found in the data set. Otherwise, they will only be marked as
 `any`. This is basically a "stronger" signal than the `--ignore-inconsistent`
-flag.
+flag. The enumeration for optional types will only include the non-null types.

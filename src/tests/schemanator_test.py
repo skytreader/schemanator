@@ -94,6 +94,23 @@ class SchemanatorTests(unittest.TestCase):
         }
         self.assertEqual(expected_schema, schemanator.emanate(data))
 
+    def test_optional(self):
+        schemanator = Schemanator(ignore_inconsistent=True)
+        data = (
+            {
+                "name": "Chad Chadderson",
+                "age": "28"
+            },
+            {
+                "age": "'32'"
+            }
+        )
+        expected_schema: EmanatedSchema = {
+            "name": SchemanatedType.OPTIONAL,
+            "age": SchemanatedType.ANY,
+        }
+        self.assertEqual(expected_schema, schemanator.emanate(data))
+
     def test_no_mod(self):
         schemanator = Schemanator(ignore_inconsistent=True)
         s1 = {
