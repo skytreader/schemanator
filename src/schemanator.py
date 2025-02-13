@@ -70,7 +70,6 @@ class Schemanator(object):
 
         return inferred_schema
 
-    # TODO make sure this does not modify the arguments
     def __merge_schemas(self, s1: EmanatedSchema, s2: EmanatedSchema):
         s1_keys = set(s1.keys())
         s2_keys = set(s2.keys())
