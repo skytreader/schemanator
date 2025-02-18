@@ -54,11 +54,11 @@ class SchemanatorTests(unittest.TestCase):
             },
         )
         expected_schema: EmanatedSchema = {
-            "name": SchemanatedType.STRING,
-            "id": SchemanatedType.INTEGER,
-            "score": SchemanatedType.FLOAT,
-            "preferences": SchemanatedType.JSON_ARRAY,
-            "address": SchemanatedType.JSON_OBJECT
+            "name": set((SchemanatedType.STRING,)),
+            "id": set((SchemanatedType.INTEGER,)),
+            "score": set((SchemanatedType.FLOAT,)),
+            "preferences": set((SchemanatedType.JSON_ARRAY,)),
+            "address": set((SchemanatedType.JSON_OBJECT,))
         }
         self.assertEqual(expected_schema, schemanator.emanate(data))
 
@@ -89,8 +89,8 @@ class SchemanatorTests(unittest.TestCase):
             }
         )
         expected_schema: EmanatedSchema = {
-            "name": SchemanatedType.STRING,
-            "age": SchemanatedType.ANY,
+            "name": set((SchemanatedType.STRING,)),
+            "age": set((SchemanatedType.ANY,))
         }
         self.assertEqual(expected_schema, schemanator.emanate(data))
 
@@ -106,8 +106,8 @@ class SchemanatorTests(unittest.TestCase):
             }
         )
         expected_schema: EmanatedSchema = {
-            "name": SchemanatedType.OPTIONAL,
-            "age": SchemanatedType.ANY,
+            "name": set((SchemanatedType.OPTIONAL,)),
+            "age": set((SchemanatedType.ANY,)),
         }
         self.assertEqual(expected_schema, schemanator.emanate(data))
 
