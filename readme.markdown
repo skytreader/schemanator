@@ -27,9 +27,11 @@ The fields in your data set will be tagged with the following data types:
 tagged as `any`. Without this flag, schemanator will throw an exception and quit
 for inconsistent data sets.
 
-`-q --quoted-strings` Every field in quotes (double or single) will be treated
-as strings. Otherwise, schemanator will attempt to predict the type of data
-between the quotes.
+> **TODO**
+> 
+> `-q --quoted-strings` Every field in quotes (double or single) will be treated
+> as strings. Otherwise, schemanator will attempt to predict the type of data
+> between the quotes.
 
 `-e --enumerate-union` For fields that can take on multiple types, enumerate the
 possible types found in the data set. Otherwise, they will only be marked as
